@@ -60,26 +60,21 @@ public class ActivityTwo extends Activity implements OnClickListener {
         // создаем объект для создания и управления версиями БД
         dbHelper = new DBHelper(this);
 
-        // адаптер
-        // Получаем экземпляр элемента Spinner
         Spinner spinner = (Spinner)findViewById(R.id.spinner);
         // Настраиваем адаптер
         ArrayAdapter<?> adapter =
                 new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, data);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
-        // Вызываем адаптер
         spinner.setAdapter(adapter);
         spinner.setPrompt("Предмет");
 
         final Spinner spinner2 = (Spinner)findViewById(R.id.spinner2);
 
-        // Настраиваем адаптер
         ArrayAdapter<?> adapter2 =
                 new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, data2);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
-        // Вызываем адаптер
         spinner2.setAdapter(adapter2);
         spinner2.setPrompt("Оценка");
         spinner2.setSelection(3);
@@ -128,21 +123,18 @@ public class ActivityTwo extends Activity implements OnClickListener {
                 // делаем запрос всех данных из таблицы
                 Cursor c2 = db.query("mytable", null, null, null, null, null, null);
 
-                // ставим позицию курсора на первую строку выборки
                 if (c2.moveToFirst()) {
 
-                    // определяем номера столбцов по имени в выборке
                     int idColIndex = c2.getColumnIndex("id");
                     int subjectColIndex = c2.getColumnIndex("subject");
                     int markColIndex = c2.getColumnIndex("mark");
 
                     do {
-                        // получаем значения по номерам столбцов и пишем в лог
+
                         Log.d(LOG_TAG,
                                 "ID = " + c2.getInt(idColIndex) +
                                         ", subject = " + c2.getString(subjectColIndex) +
                                         ", mark = " + c2.getString(markColIndex));
-                        // переход на следующую строку
                     } while (c2.moveToNext());
                 } else
                     Log.d(LOG_TAG, "0 rows");
@@ -260,11 +252,11 @@ public class ActivityTwo extends Activity implements OnClickListener {
         NotificationManager notificationManager =
                 (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {       // For Oreo and greater than it, we required Notification Channel.
-            CharSequence name = "My New Channel";                   // The user-visible name of the channel.
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {       
+            CharSequence name = "My New Channel";                   
             int importance = NotificationManager.IMPORTANCE_HIGH;
 
-            NotificationChannel channel = new NotificationChannel(CHANNEL_ID,name, importance); //Create Notification Channel
+            NotificationChannel channel = new NotificationChannel(CHANNEL_ID,name, importance); 
             notificationManager.createNotificationChannel(channel);
         }
 
