@@ -49,19 +49,15 @@ public class ActivityThree extends Activity implements OnClickListener {
 
         selected = (Spinner) findViewById(R.id.spinner);
 
-        // создаем объект для создания и управления версиями БД
         dbHelper = new DBHelper(this);
 
-        // адаптер
-        // Получаем экземпляр элемента Spinner
         final Spinner spinner = (Spinner)findViewById(R.id.spinner);
 
-// Настраиваем адаптер
+
         ArrayAdapter<?> adapter =
                 new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, data);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
-// Вызываем адаптер
         spinner.setAdapter(adapter);
 
     }
@@ -80,7 +76,6 @@ public class ActivityThree extends Activity implements OnClickListener {
         // подключаемся к БД
         SQLiteDatabase db = dbHelper.getWritableDatabase();
 
-        // переменные для query
         String[] columns = null;
         String selection = null;
         String[] selectionArgs = null;
