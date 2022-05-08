@@ -138,7 +138,7 @@ public class ActivityThree extends Activity implements OnClickListener {
     class DBHelper extends SQLiteOpenHelper {
 
         public DBHelper(Context context) {
-            // конструктор суперкласса
+
             super(context, "DB", null, 1);
         }
 
